@@ -1,0 +1,22 @@
+name: Export Companion 3.3.1 Docker Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Companion v3.3.1 image
+        run: |
+          docker pull ghcr.io/bitfocus/companion/companion:v3.3.1
+
+      - name: Save image to tar file
+        run: |
+          docker save ghcr.io/bitfocus/companion/companion:v3.3.1 -o companion-3.3.1.tar
+
+      - name: Upload tar as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: companion-3.3.1-image
+          path: companion-3.3.1.tar
