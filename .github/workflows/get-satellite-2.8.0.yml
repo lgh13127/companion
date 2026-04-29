@@ -1,0 +1,17 @@
+name: Download Satellite 2.8.0 Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Satellite 2.8.0 win-x64 zip
+        run: |
+          wget https://github.com/bitfocus/companion-satellite/releases/download/v2.8.0/companion-satellite-win-x64.zip
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: satellite-2.8.0-win64
+          path: companion-satellite-win-x64.zip
